@@ -14,6 +14,12 @@ config/name="C.O.N.V.E.R.T"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://assets/sprites/icon.svg"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/mode=3
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
