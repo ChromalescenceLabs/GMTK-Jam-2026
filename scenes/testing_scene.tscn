@@ -1,12 +1,21 @@
 [gd_scene format=3 uid="uid://rmb3gje5nwsm"]
 
 [ext_resource type="PackedScene" uid="uid://dmbhslapygqd7" path="res://scenes/player.tscn" id="1_ifns1"]
+[ext_resource type="Script" uid="uid://df5gbchxfspqm" path="res://scenes/testing_scene.gd" id="1_v6rby"]
+[ext_resource type="PackedScene" uid="uid://cplpl7j2tbep3" path="res://scenes/npc.tscn" id="2_2j2p2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_365ag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifns1"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ifns1"]
+vertices = PackedVector2Array(417.70313, 15.59375, 457.10156, 92.5625, 547.59375, 279.14063, 34.671875, 318.22656, 205, 121.27344, 26.21875, 41.96875, 85.32031, 20.976563, 113.40625, 118.796875, 205, 67.84375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 3), PackedInt32Array(4, 8, 0), PackedInt32Array(4, 3, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(25, 329, 563, 288, 423, 4, 195, 60, 195, 111, 121, 109, 92, 8, 16, 35)])
+agent_radius = 20.25
+
 [node name="TestingScene" type="Node2D" unique_id=177702522]
+script = ExtResource("1_v6rby")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=602498789]
 position = Vector2(163, 70)
@@ -18,4 +27,29 @@ texture = SubResource("PlaceholderTexture2D_365ag")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1142738905]
 shape = SubResource("RectangleShape2D_ifns1")
 
-[node name="CharacterBody2D" parent="." unique_id=1866997068 instance=ExtResource("1_ifns1")]
+[node name="Player" parent="." unique_id=1866997068 instance=ExtResource("1_ifns1")]
+position = Vector2(165, 225)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1828688111]
+zoom = Vector2(1.58, 1.58)
+
+[node name="NPC" parent="." unique_id=1011810883 node_paths=PackedStringArray("points") instance=ExtResource("2_2j2p2")]
+position = Vector2(383, 186)
+points = [NodePath("../Node2D/Marker2D"), NodePath("../Node2D/Marker2D2"), NodePath("../Node2D/Marker2D3"), NodePath("../Node2D/Distraction")]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=502214511]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Node2D" unique_id=303342231]
+navigation_polygon = SubResource("NavigationPolygon_ifns1")
+
+[node name="Marker2D" type="Marker2D" parent="Node2D" unique_id=425991416]
+position = Vector2(54, 55)
+
+[node name="Marker2D2" type="Marker2D" parent="Node2D" unique_id=1657305178]
+position = Vector2(227, 257)
+
+[node name="Marker2D3" type="Marker2D" parent="Node2D" unique_id=2114167158]
+position = Vector2(348, 48)
+
+[node name="Distraction" type="Marker2D" parent="Node2D" unique_id=859279693]
+position = Vector2(510, 258)

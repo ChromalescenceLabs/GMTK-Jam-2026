@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cplpl7j2tbep3"]
+
+[ext_resource type="Script" uid="uid://bqw427ysb3dky" path="res://scripts/npc.gd" id="1_nh2m4"]
+[ext_resource type="Texture2D" uid="uid://by12bj5k4s6pr" path="res://assets/sprites/icon.svg" id="2_abqhh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tcuxl"]
+radius = 15.033297
+
+[node name="NPC" type="CharacterBody2D" unique_id=1011810883 node_paths=PackedStringArray("points")]
+script = ExtResource("1_nh2m4")
+points = [null]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1459622165]
+shape = SubResource("CircleShape2D_tcuxl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1435172679]
+scale = Vector2(0.23437499, 0.23437476)
+texture = ExtResource("2_abqhh")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=51221625]
+avoidance_enabled = true
+radius = 20.0
+debug_enabled = true
+
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
